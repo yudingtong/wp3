@@ -12,9 +12,18 @@ Page({
   },
   //事件处理函数
   bindViewTap: function() {
-    wx.navigateTo({
-      url: '../logs/logs'
-    })
+    if (app.globalData.loginflag){
+      wx.navigateTo({
+        url: '../logs/logs'
+      })
+    }else{
+      this.setData({
+        userInfo: {},
+        hasUserInfo: false
+      })
+
+    }
+    
   },
   onLoad: function () {
     if (app.globalData.userInfo) {
@@ -22,6 +31,7 @@ Page({
         userInfo: app.globalData.userInfo,
         hasUserInfo: true
       })
+    
     } else if (this.data.canIUse){
       // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
       // 所以此处加入 callback 以防止这种情况
@@ -40,10 +50,15 @@ Page({
             userInfo: res.userInfo,
             hasUserInfo: true
           })
-        }
+        },
+        
       })
     }
   },
+
+
+
+
   getUserInfo: function(e) {
     console.log(e)
     app.globalData.userInfo = e.detail.userInfo
@@ -69,9 +84,24 @@ Page({
                 console.log(res.data.oid)
                 app.globalData.wxid = res.data.oid
                 app.globalData.sessionid = res.data.sessionid
+                app.globalData.loginflag = true
+                 
+              },  
+              fail(res){
+                // this.setData({
+                //   hasUserInfo: false
+                //   //canIUse: false,
+                // }) ,
                 
-                
+                wx.showToast({
+                  title: '登录失败，请重登',
+                  
+                  // image: '../Image/suess.png',
+                  duration: 2000
+                })
+
               }
+              
             })
         
       }
