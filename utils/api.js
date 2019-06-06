@@ -50,7 +50,7 @@ function _getTopicInfo(o) {
 function _getLatestTopic(o){
 	//return HOST_URI+LATEST_TOPIC+'?'+_obj2uri(o);
   return "http://127.0.0.1:9000/postlist?wxid=o7X1r5VgDd1UeBQ9ZIMv-6iJ3y70";
-    
+     
 }
 
 function _getHotestTopic(o) {
