@@ -9,11 +9,20 @@ const formatTime = date => {
   return [year, month, day].map(formatNumber).join('/') + ' ' + [hour, minute, second].map(formatNumber).join(':')
 }
 
+
+
 const formatNumber = n => {
   n = n.toString()
   return n[1] ? n : '0' + n
 }
 
+function transLocalTime(t) {
+  return new Date(t * 1000);
+}
+
+
+
 module.exports = {
-  formatTime: formatTime
+  formatTime: formatTime,
+  transLocalTime: transLocalTime
 }

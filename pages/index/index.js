@@ -4,7 +4,7 @@ const app = getApp()
 
 Page({
   data: {
-    motto: 'Hello World',
+    motto: 'XXXXX',
     userInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
@@ -13,7 +13,7 @@ Page({
   //事件处理函数
   bindViewTap: function() {
     if (app.globalData.loginflag){
-      wx.navigateTo({
+      wx.switchTab({
         url: '../logs/logs'
       })
     }else{

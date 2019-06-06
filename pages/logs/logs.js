@@ -71,29 +71,28 @@ Page({
                 duration: 2000
               })
               setTimeout(function () {
-                wx.navigateTo({
+                
+                wx.switchTab({
                  
-                  url: '../index/index',
+                  url: '/pages/discuss/discuss',
                 })
               }, 2000) 
             }else{
-              wx.navigateTo({
-                  url: '../index/index',
+              //已经注册
+              wx.switchTab({
+                url: '/pages/discuss/discuss',
 
               })
             }
        },
       fail: function (res) {
+        console.log(res.data);
         wx.showToast({
-          title: '注册失败',
+          title: '注册失败,请重新填写',
           // image: '../Image/suess.png',
           duration: 2000
         })
-        setTimeout(function () {
-          wx.switchTab({
-            url: '../index/index',
-          })
-        }, 2000)
+       
 
       }
     })
